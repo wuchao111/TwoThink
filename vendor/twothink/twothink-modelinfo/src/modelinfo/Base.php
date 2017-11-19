@@ -467,13 +467,13 @@ class Base{
         if(is_array($fields)){
             $fields = $this->MergeFields($fields);
         }
+        if(count($fields) < 1){
+            $fields = [];
+        }
         if(!$data){
             $data = request()->param(); //获取数据
         }
-        //字段列表为空调出自动验证
-        if(count($fields) <= 0){
-            return $this;
-        }
+
         $validate   =   array();
         $scene = 'auto';//验证场景
         $validate_scene_field = [];//验证字段

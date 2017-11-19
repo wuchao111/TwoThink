@@ -99,6 +99,7 @@ class ModelInfo{
     public function getUpdate($model_info,$laye = 'model'){
         //获取模型信息
         $model_obj = $this->info($model_info);
+
         //自动验证
         if(!$validate = $model_obj->getFields()->checkValidate()){
             $this->error = $model_obj->getError();
