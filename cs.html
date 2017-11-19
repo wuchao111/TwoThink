@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <include file='./Public/Tongdian/src/public/header.html' />
+    <title>会员卡升级</title>
+</head>
+
+<body>
+<div class="page-group">
+    <div class="page page-current" id="recharge">
+
+        <div class="content">
+            <div class="tabs">
+                <form action="{:U('recharge')}" id="quotaForm" method="post">
+                    <div class="select-content content-padded"  style="margin-top: 80%;margin-bottom: 1%;">
+                        <ul class="money-type">
+                            <volist name="list" id="vo">
+                                <li tab='tab_{$vo.id}'>
+                                    <input type="radio" name="money" id="{$vo.id}" value="{$vo.id}">
+                                    <label for="{$vo.id}"><span>{$vo.gz_name}</span></label>
+                                </li>
+                            </volist>
+                        </ul>
+                    </div>
+                    <div class="content-padded ypwl_table" style="margin-bottom: 20%;">
+                        <volist name="list" id="vo">
+                            <div id="tab_{$vo.id}" class="table_tag" style="display:none;">
+                                <table border="0" cellspacing="0" cellpadding="0">
+                                    <tr><td><span>当前级别:金卡</span></td><td><span>折扣:金卡</span></td></tr>
+                                    <tr><td><span>升级后级别:金卡</span></td><td><span>折扣:金卡</span></td></tr>
+                                    <tr><td><span>需扣除积分:金卡</span></td><td><span>可用积分:金卡</span></td></tr>
+                                </table>
+                            </div>
+                        </volist>
+                    </div>
+
+                    <div class="btn-wrap">
+                        <button class="btn btn-lg" form="quotaForm">升级</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+        <include file='./Public/Tongdian/src/public/javascript.html' />
+        <style>
+            .ypwl_table table{border-right:1px solid #ccc;border-bottom:1px solid #ccc; width:100%;}
+            .ypwl_table table td{border-left:1px solid #ccc;border-top:1px solid #ccc; width:50%;height:35px;line-height:35px; text-align:center;}
+            #recharge .tabs .money-type li {width: 50% !important;}
+            #recharge .tabs .money-type {
+                overflow: hidden;
+                padding: 0.666667rem 0rem 0 0rem !important;
+            }
+            #recharge .tabs .money-type li {
+                padding-left:0rem !important;
+                padding-right: 0.05rem !important;
+                margin-bottom: 0.266667rem;
+            }
+        </style>
+        <script>
+            $(function() {
+                $("#quotaForm ul li").on("click",function(){
+                    var tab = $(this).attr('tab');
+                    console.log(tab);
+                    $(".ypwl_table .table_tag").hide();
+                    $("#"+tab).show();
+                })
+            });
+        </script>
+    </div>
+</div>
+
+
+</body>
+
+</html>
