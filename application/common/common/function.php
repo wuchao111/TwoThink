@@ -7,7 +7,7 @@
 // | Author: 艺品网络  <82550565@qq.com>
 // +----------------------------------------------------------------------
 // TwoThink常量定义
-define('TWOTHINK_VERSION','3.0.0 20171116' );
+define('TWOTHINK_VERSION','3.0.0 20171119' );
 
 use think\Db;
 /**
