@@ -311,6 +311,9 @@ class Admin extends Controller {
 
         $param =$this->request->param();
         $info = modelinfo()->info($this->model_info)->getParam('info');
+        if(!isset($info['pk']) || empty($info['pk'])){
+            $info['pk'] = 'id';
+        }
         $this->success(!empty($param[$info['pk']])?'更新成功':'新增成功');
     }
     /*
