@@ -13,6 +13,7 @@ use app\common\controller\Menu;
 use think\Controller;
 use think\Db;
 use think\Config;
+use think\Exception;
 
 use app\common\model\AuthRule;
 
@@ -305,16 +306,21 @@ class Admin extends Controller {
      * @author 小矮人 82550565@qq.com
      */
     public function _updates(){
-        $model_obj  = modelinfo();
-        $res = $model_obj->getUpdate($this->model_info);
-        $res || $this->error( $model_obj->getError());
+        try{
+            $model_obj  = modelinfo();
+            $res = $model_obj->getUpdate($this->model_info);
+            $res || $this->error( $model_obj->getError());
 
-        $param =$this->request->param();
-        $info = modelinfo()->info($this->model_info)->getParam('info');
-        if(!isset($info['pk']) || empty($info['pk'])){
-            $info['pk'] = 'id';
+            $param =$this->request->param();
+            $info = modelinfo()->info($this->model_info)->getParam('info');
+            if(!isset($info['pk']) || empty($info['pk'])){
+                $info['pk'] = 'id';
+            }
+            $this->success(!empty($param[$info['pk']])?'更新成功':'新增成功');
         }
-        $this->success(!empty($param[$info['pk']])?'更新成功':'新增成功');
+        catch (Exception $e){
+            $this->error($e->getMessage());
+        }
     }
     /*
      * @title 数据真删除
