@@ -310,7 +310,7 @@ class Admin extends Controller {
         $res || $this->error( $model_obj->getError());
 
         $param =$this->request->param();
-        $info = $model_obj->getParam('info');
+        $info = modelinfo()->info($this->model_info)->getParam('info');
         $this->success(!empty($param[$info['pk']])?'更新成功':'新增成功');
     }
     /*
