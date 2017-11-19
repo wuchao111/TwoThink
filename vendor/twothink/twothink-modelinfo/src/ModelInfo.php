@@ -109,8 +109,7 @@ class ModelInfo{
             $this->error = $model_obj->getError();
             return false;
         }
-        $info = $model_obj->getParam('info');
-        return !empty($param[$info['pk']])?'更新成功':'新增成功';
+        return true;
     }
     /**
      * 返回模型的错误信息

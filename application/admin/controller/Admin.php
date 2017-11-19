@@ -308,7 +308,10 @@ class Admin extends Controller {
         $model_obj  = modelinfo();
         $res = $model_obj->getUpdate($this->model_info);
         $res || $this->error( $model_obj->getError());
-        $this->success($res);
+
+        $param =$this->request->param();
+        $info = $model_obj->getParam('info');
+        $this->success(!empty($param[$info['pk']])?'更新成功':'新增成功');
     }
     /*
      * @title 数据真删除
