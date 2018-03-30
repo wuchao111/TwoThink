@@ -1,0 +1,62 @@
+{extend name="public/base" /}
+
+{block name="content-header"}
+<h5><i class="fa fa-fw fa-connectdevelop"></i> 在线保修</h5>
+
+
+{block name="body"}
+<div class="row">
+    <div class="col-xs-12">
+        <div>
+            <div href="{:url('add')}" class="ajax-get iframe btn btn-sm bg-green"><i class="fa fa-fw fa-plus"></i>添加</div>
+        </div>
+        <!-- 数据列表 -->
+        <div class="table-responsive margin-top-5">
+            <table class="table table-bordered table-striped table-hover">
+                <tr>
+                    <th>报修人</th>
+                    <th>电话</th>
+                    <th>标题</th>
+                    <th>地址</th>
+                    <th>内容</th>
+                    <th>时间</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                </tr>
+                <?php foreach ($propertys as $propertry):?>
+                <tr>
+                <td><?=$propertry['name']?></td>
+                <td><?=$propertry['tel']?></td>
+                <td><?=$propertry['titel']?></td>
+                <td><?=$propertry['address']?></td>
+                <td><?=$propertry['content']?></td>
+                <td><?=date('Y-m-d H:i:s',$propertry['time'])?></td>
+                <td><?=$propertry['status']==1 ? '未处理': '已处理'?></td>
+                <td>
+                    <a href="{:url('del')}?id=<?=$propertry['id']?>">删除</a>
+                    <a href="{:url('edit')}?id=<?=$propertry['id']?>">修改</a>
+                </td>
+                </tr>
+                <?php endforeach;?>
+            </table>
+        </div>
+        <!-- 分页 -->
+        <div class="page">
+            {$page}
+        </div>
+    </div>
+</div>
+{/block}
+{block name="script"}
+<script type="text/javascript">
+    $(function(){
+        highlight_subnav('{:url("addons/index")}');
+    })
+</script>
+{/block}
+
+
+
+
+
+

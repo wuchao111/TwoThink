@@ -1,0 +1,58 @@
+{extend name="public/base" /}
+
+{block name="content-header"}
+<h5><i class="fa fa-fw fa-connectdevelop"></i> 小区通知</h5>
+
+
+{block name="body"}
+<div class="row">
+    <div class="col-xs-12">
+        <div>
+            <div href="{:url('add')}" class="ajax-get iframe btn btn-sm bg-green"><i class="fa fa-fw fa-plus"></i>添加</div>
+        </div>
+        <!-- 数据列表 -->
+        <div class="table-responsive margin-top-5">
+            <table class="table table-bordered table-striped table-hover">
+                <tr>
+                    <th>名字</th>
+                    <th>标题</th>
+                    <th>时间</th>
+                    <th>内容</th>
+                    <th>图片</th>
+                    <th>操作</th>
+                </tr>
+                <?php foreach ($notices as $notice):?>
+                <tr>
+                    <td><?=$notice['name']?></td>
+                    <td><?=$notice['title']?></td>
+                    <td><?=date('Y-m-d H:i:s',$notice['time'])?></td>
+                    <td><?=$notice['intro']?></td>
+                    <td><img src="<?=$notice['pic']?>" alt="" width="50px" height="50px"></td>
+                    <td>
+                        <a href="{:url('del')}?id=<?=$notice['id']?>">删除</a>
+                        <a href="{:url('edit')}?id=<?=$notice['id']?>">修改</a>
+                    </td>
+                </tr>
+                <?php endforeach;?>
+            </table>
+        </div>
+        <!-- 分页 -->
+        <div class="page">
+            {$notices->render()}
+        </div>
+    </div>
+</div>
+{/block}
+{block name="script"}
+<script type="text/javascript">
+    $(function(){
+        highlight_subnav('{:url("addons/index")}');
+    })
+</script>
+{/block}
+
+
+
+
+
+
